@@ -17,8 +17,8 @@ def uploadvid(input, start_time, end_time, second_input):
         clip2 = VideoFileClip(second_input)
 
     clip1 = clip1.subclip(start_time, end_time)
-
-    clip2 = clip2.subclip(100, end_time-start_time)
+    print(int(end_time)-int(start_time))
+    clip2 = clip2.subclip(100, 100+ (int(end_time)-int(start_time)))
     (w,h) = clip2.size
 
     cropped_clip2 = crop(clip2,width=w/2, x_center=(h/2) + (w/4))
@@ -27,6 +27,10 @@ def uploadvid(input, start_time, end_time, second_input):
     final = clips_array([[clip1], [cropped_clip2]])
     # final.ipython_display(width=480)
     final.write_videofile("combined.mp4")
+
+def upload_to_insta():
+    from selenium import webdriver
+    driver = webdriver.Chrome('./chromedriver')
     
-if __name__ == '__main__':
-    uploadvid()
+# if __name__ == '__main__':
+#     uploadvid()
