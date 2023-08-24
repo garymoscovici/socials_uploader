@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Test</title>
+  <meta charset="utf-8" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static',filename='styles/styles.css') }}"
+  />
+</head>
+<body>
+  <form method="POST" action="/page">
+    <h1> Socials uploader.</h1>
+    <label for="videofile" class="custom-file-upload">Select a video file:</label>
+    <input type="file" id="videofile" name="videofile" /> <br /> 
+    <br />
+    <input
+      type="checkbox"
+      name="tiktok"
+      value="true"
+      checked
+    />Tiktok<br />
+    <input
+      type="checkbox"
+      name="instagram"
+      value="true"
+      checked
+    />Instagram<br />
+
+    <br />
+    <label for="caption" class="custom-file-upload">Caption:</label>
+    <input type="text" id="caption" name="caption">
+    <br />
+    <br />
+    <label for="thumbnail" class="custom-file-upload">Select a thumbnail:</label>
+    <input type="file" id="thumbnail" name="thumbnail" />
+    <br />
+    <br />
+    <label for="start_minutes" class="custom-file-upload">Start time:</label>
+    <input type="number" min="0" max="60" step="1" autocomplete="off" value="0" name="start_minutes" id="start_minutes" class="input_time"> minutes,
+    <input type="number" min="0" max="60" step="1" autocomplete="off" value="0" name="start_seconds" id="start_seconds" class="input_time"> seconds
+    <br />
+    <br />
+    <label for="end_minutes" class="custom-file-upload">End time:</label>
+    <input type="number" min="0" max="60" step="1" autocomplete="off" value="0" name="end_minutes" id="end_minutes" class="input_time"> minutes,
+    <input type="number" min="0" max="60" step="1" autocomplete="off" value="0" name="end_seconds" id="end_seconds" class="input_time"> seconds
+    <br />
+    <br />
+    <input type="submit" value = "Lets gooooo"></input>
+  </form>
+</body>
