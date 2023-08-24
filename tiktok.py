@@ -28,7 +28,7 @@ def save_cookie(driver, path):
     with open(path, 'wb') as filehandler:
         pickle.dump(driver.get_cookies(), filehandler)
 
-def post_to_tiktok(driver):
+def post_to_tiktok(driver, test_mode, filename):
     LOGIN_TIKTOK_BUTTON_XPATH = "/html/body/div[7]/div[3]/div/div/div[1]/div[1]/div/div/a[2]/div/p"
     TIKTOK_ACCEPT_COOKIES = "/html/body/tiktok-cookie-banner//div/div[2]/button[2]"
     TIKTOK_UPLOAD_BUTTON = "/html/body/div[1]/div[1]/div/div[3]/div[1]/a/div/span"
@@ -68,7 +68,7 @@ def post_to_tiktok(driver):
     )
     ActionChains(driver).move_to_element(element).click(element).perform()
     time.sleep(2)
-    pyautogui.typewrite(r"video filepath")
+    pyautogui.typewrite(filename)
     pyautogui.press('enter')
     while True:
         time.sleep(1)
@@ -91,7 +91,11 @@ def post_to_tiktok(driver):
     element.send_keys(Keys.DELETE)
     element.send_keys("This be a test caption")
     element = driver.find_element(By.XPATH, POST_BUTTON)
-    # element.click()
+    if not test_mode:
+        element.click()
+    else:
+        time.sleep(5)
     # driver.close()
     # input("close Driver?")
+    return driver
 

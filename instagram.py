@@ -29,7 +29,7 @@ def load_cookie(driver: webdriver.Chrome, path):
          for cookie in cookies:
              driver.add_cookie(cookie)
 
-def post_to_instagram(driver: webdriver.Chrome):
+def post_to_instagram(driver: webdriver.Chrome, test_mode: bool, filename: str, thumbnail_filepath):
     driver.get("https://instagram.com")
     load_cookie(driver,'./insta_cookies.txt')
     print("loading cookies")
@@ -54,7 +54,7 @@ def post_to_instagram(driver: webdriver.Chrome):
     print('Waiting')
     time.sleep(2)
     print('Typing file path to video')
-    pyautogui.typewrite(r"video filepath")
+    pyautogui.typewrite(filename)
     pyautogui.press('enter')
     try:
         print('Confirming upload to reels')
@@ -81,7 +81,7 @@ def post_to_instagram(driver: webdriver.Chrome):
     element.click()
 
     time.sleep(2)
-    pyautogui.typewrite(r"thumbnail filepath")
+    pyautogui.typewrite(thumbnail_filepath)
     pyautogui.press('enter')
 
     element = WebDriverWait(driver, 10).until(
@@ -92,5 +92,8 @@ def post_to_instagram(driver: webdriver.Chrome):
     element = driver.find_element(By.XPATH, CAPTION_XPATH)
     element.send_keys("This be a test caption")
     element = driver.find_element(By.XPATH, FINAL_UPLOAD_XPATH)
-    element.click()
+    if not test_mode:
+        element.click()
+    else:
+        time.sleep(5)
     input("continue?")
